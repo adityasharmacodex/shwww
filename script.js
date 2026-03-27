@@ -96,14 +96,17 @@ function showReceiverGate(payload) {
 }
 
 function revealSharedWish(name) {
-  const safeName = name.trim() || sharedWishData?.name?.trim() || "My Star";
+  const sharedName = sharedWishData && sharedWishData.name ? sharedWishData.name.trim() : "";
+  const sharedPhotos =
+    sharedWishData && Array.isArray(sharedWishData.photos) ? sharedWishData.photos : [];
+  const safeName = name.trim() || sharedName || "My Star";
   receiverGate.classList.add("hidden");
   surpriseContent.classList.remove("hidden");
   gallerySection.classList.remove("hidden");
   wishSection.classList.remove("hidden");
   updateWishView(safeName);
-  renderGallery(sharedWishData?.photos || []);
-  photoCountText.textContent = `${(sharedWishData?.photos || []).length} photos surprise me load ho chuki hain.`;
+  renderGallery(sharedPhotos);
+  photoCountText.textContent = `${sharedPhotos.length} photos surprise me load ho chuki hain.`;
   launchConfetti(44);
   playSong();
 }
@@ -322,7 +325,7 @@ async function loadSharedStateFromUrl() {
       }
 
       showReceiverGate({
-        name: payload.name?.trim() || "",
+        name: payload.name ? payload.name.trim() : "",
         photos: Array.isArray(payload.photos) ? payload.photos : [],
       });
       return;
@@ -338,7 +341,7 @@ async function loadSharedStateFromUrl() {
     try {
       const payload = JSON.parse(fromBase64Url(hash.slice(5)));
       showReceiverGate({
-        name: payload.name?.trim() || "",
+        name: payload.name ? payload.name.trim() : "",
         photos: Array.isArray(payload.photos) ? payload.photos : [],
       });
       return;
