@@ -1,0 +1,406 @@
+:root {
+  --bg-top: #fff1f6;
+  --bg-mid: #ffd6e5;
+  --bg-bottom: #ff87af;
+  --card: rgba(255, 255, 255, 0.34);
+  --card-strong: rgba(255, 255, 255, 0.48);
+  --line: rgba(255, 255, 255, 0.52);
+  --text-main: #4b1530;
+  --text-soft: #87405e;
+  --primary-a: #ff4f88;
+  --primary-b: #ff8b6b;
+  --button-shadow: rgba(255, 79, 136, 0.28);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  width: 100%;
+}
+
+body {
+  position: relative;
+  overflow-x: hidden;
+  font-family: "Avenir Next", "Trebuchet MS", "Segoe UI", sans-serif;
+  color: var(--text-main);
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.78), transparent 22%),
+    radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.45), transparent 18%),
+    linear-gradient(180deg, var(--bg-top) 0%, var(--bg-mid) 45%, var(--bg-bottom) 100%);
+}
+
+.backdrop-stars,
+.glow,
+.confetti-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.backdrop-stars {
+  background-image:
+    radial-gradient(circle at 14% 18%, rgba(255, 255, 255, 0.95) 0 2px, transparent 2px),
+    radial-gradient(circle at 82% 12%, rgba(255, 255, 255, 0.75) 0 2px, transparent 2px),
+    radial-gradient(circle at 28% 76%, rgba(255, 255, 255, 0.75) 0 2px, transparent 2px),
+    radial-gradient(circle at 64% 68%, rgba(255, 255, 255, 0.65) 0 2px, transparent 2px);
+  animation: twinkle 6s linear infinite;
+}
+
+.glow {
+  filter: blur(70px);
+  opacity: 0.75;
+}
+
+.glow-one {
+  background: rgba(255, 182, 204, 0.95);
+  inset: -12% auto auto -8%;
+  width: 22rem;
+  height: 22rem;
+}
+
+.glow-two {
+  background: rgba(255, 132, 181, 0.9);
+  inset: auto -8% -10% auto;
+  width: 24rem;
+  height: 24rem;
+}
+
+.page-shell {
+  width: min(1100px, calc(100% - 28px));
+  margin: 0 auto;
+  padding: max(20px, env(safe-area-inset-top)) 0 max(54px, env(safe-area-inset-bottom));
+}
+
+.hero-card,
+.music-card,
+.live-card,
+.gallery-section,
+.wish-section,
+.gate-card {
+  position: relative;
+  z-index: 1;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  background: var(--card);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 22px 70px rgba(108, 34, 72, 0.16);
+}
+
+.hero-card,
+.gallery-section,
+.wish-section,
+.gate-card {
+  padding: 28px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.preview-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 22px;
+  margin-top: 24px;
+  align-items: stretch;
+}
+
+.music-card,
+.live-card {
+  padding: 24px;
+}
+
+.receiver-gate {
+  margin-top: 24px;
+}
+
+.gate-card {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.receiver-form {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.eyebrow,
+.mini-title {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: var(--text-soft);
+}
+
+h1,
+h2,
+p,
+ol {
+  margin-top: 0;
+}
+
+h1 {
+  margin: 12px 0 16px;
+  font-size: clamp(2.4rem, 6vw, 4.8rem);
+  line-height: 1.04;
+  font-family: "Snell Roundhand", "Brush Script MT", "Segoe Script", cursive;
+  color: #d9266b;
+}
+
+h2 {
+  margin: 10px 0 0;
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+}
+
+.intro,
+#musicStatus,
+#heroMessage {
+  color: var(--text-soft);
+  line-height: 1.7;
+  font-size: 1.02rem;
+}
+
+.birthday-form {
+  margin-top: 22px;
+  display: grid;
+  gap: 14px;
+}
+
+label {
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: var(--text-soft);
+}
+
+input,
+button {
+  border: 0;
+  font: inherit;
+}
+
+input[type="text"],
+input[type="file"],
+.share-box input,
+#receiverNameInput {
+  width: 100%;
+  padding: 15px 18px;
+  font-size: 16px;
+  border-radius: 18px;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: inset 0 0 0 1px rgba(217, 74, 130, 0.16);
+}
+
+input[type="file"] {
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.helper-text {
+  margin: -4px 0 0;
+  color: var(--text-soft);
+  font-size: 0.95rem;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 6px;
+  align-items: stretch;
+}
+
+.button-row button,
+#playButton {
+  width: auto;
+  min-height: 52px;
+}
+
+button {
+  padding: 14px 20px;
+  border-radius: 999px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.primary-button {
+  color: white;
+  background: linear-gradient(135deg, var(--primary-a), var(--primary-b));
+  box-shadow: 0 14px 36px var(--button-shadow);
+}
+
+.secondary-button {
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.48);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55);
+}
+
+.share-box {
+  margin-top: 8px;
+}
+
+.preview-grid .live-card {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.28)),
+    var(--card-strong);
+}
+
+.gallery-section,
+.wish-section {
+  margin-top: 24px;
+}
+
+.section-head h2 {
+  margin: 10px 0 0;
+}
+
+.photo-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.photo-card,
+.photo-placeholder {
+  overflow: hidden;
+  border-radius: 22px;
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.52);
+  box-shadow: 0 16px 38px rgba(108, 34, 72, 0.14);
+}
+
+.photo-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.photo-placeholder {
+  min-height: 180px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 18px;
+  color: var(--text-soft);
+  font-weight: 700;
+}
+
+.wish-list {
+  margin: 20px 0 0;
+  padding-left: 22px;
+}
+
+.wish-list li {
+  margin-bottom: 12px;
+  line-height: 1.7;
+  color: var(--text-main);
+}
+
+.share-box input {
+  overflow-x: auto;
+}
+
+.confetti {
+  position: absolute;
+  top: -10vh;
+  width: 10px;
+  height: 18px;
+  border-radius: 999px;
+  opacity: 0.95;
+  animation: confettiFall linear forwards;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.66;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotate(0);
+  }
+  100% {
+    transform: translateY(120vh) rotate(540deg);
+  }
+}
+
+@media (max-width: 760px) {
+  .page-shell {
+    width: min(100% - 18px, 1100px);
+  }
+
+  .preview-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .hero-card,
+  .music-card,
+  .live-card,
+  .gallery-section,
+  .wish-section,
+  .gate-card {
+    padding: 20px;
+    border-radius: 24px;
+  }
+
+  .button-row button,
+  #playButton {
+    width: 100%;
+  }
+
+  .photo-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .wish-list {
+    padding-left: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  h2 {
+    font-size: clamp(1.2rem, 6vw, 1.6rem);
+  }
+
+  .intro,
+  #musicStatus,
+  #heroMessage,
+  .helper-text,
+  .wish-list li {
+    font-size: 0.96rem;
+    line-height: 1.6;
+  }
+
+  .photo-gallery {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .photo-placeholder {
+    min-height: 140px;
+    padding: 14px;
+  }
+}

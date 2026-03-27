@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ff6b9a" />
+    <title>Birthday Wish Link</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="backdrop-stars" aria-hidden="true"></div>
+    <div class="glow glow-one" aria-hidden="true"></div>
+    <div class="glow glow-two" aria-hidden="true"></div>
+
+    <main class="page-shell">
+      <section class="hero-card create-mode" id="creatorPanel">
+        <div class="hero-copy">
+          <p class="eyebrow">Birthday Link Creator</p>
+          <h1>Photos upload karo aur ek pyari birthday surprise link banao.</h1>
+          <p class="intro">
+            Sender photos choose karega aur link share karega. Receiver link khol
+            kar pehle naam dalega, phir uske liye song, wishes aur gallery reveal
+            hogi.
+          </p>
+        </div>
+
+        <form id="birthdayForm" class="birthday-form">
+          <label for="nameInput">Birthday person ka naam (optional preview)</label>
+          <input
+            id="nameInput"
+            name="name"
+            type="text"
+            maxlength="28"
+            placeholder="Jaise: Aditi"
+            autocomplete="name"
+          />
+
+          <label for="photoInput">Kam se kam 10 photos upload karo</label>
+          <input id="photoInput" name="photos" type="file" accept="image/*" multiple />
+          <p class="helper-text" id="photoCountText">
+            Abhi 0 photos select hui hain. Share link ke liye minimum 10 chahiye.
+          </p>
+
+          <div class="button-row">
+            <button type="submit" class="primary-button">Preview Surprise</button>
+            <button type="button" class="secondary-button" id="shareButton">
+              Share Link Banao
+            </button>
+            <button type="button" class="secondary-button" id="copyButton">
+              Link Copy Karo
+            </button>
+          </div>
+
+          <div class="share-box">
+            <label for="shareLink">Shareable link</label>
+            <input
+              id="shareLink"
+              type="text"
+              readonly
+              placeholder="Yahan birthday link aayegi"
+            />
+          </div>
+        </form>
+      </section>
+
+      <section class="receiver-gate hidden" id="receiverGate">
+        <div class="gate-card">
+          <p class="eyebrow">Birthday Surprise</p>
+          <h2>Pehle apna naam likho</h2>
+          <p class="intro">
+            Naam enter karte hi aapke liye birthday wishes, photos aur song reveal
+            ho jayegi.
+          </p>
+
+          <form id="receiverForm" class="receiver-form">
+            <input
+              id="receiverNameInput"
+              type="text"
+              maxlength="28"
+              placeholder="Apna naam likho"
+              autocomplete="name"
+            />
+            <button type="submit" class="primary-button">Open Surprise</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="preview-grid hidden" id="surpriseContent">
+        <article class="music-card">
+          <p class="mini-title">Music</p>
+          <h2>Birthday celebration mode</h2>
+          <p id="musicStatus">
+            Surprise open hote hi birthday tune automatically bajegi.
+          </p>
+          <button id="playButton" class="primary-button" type="button">
+            Song Play Karo
+          </button>
+        </article>
+
+        <article class="live-card">
+          <p class="mini-title">Live Wish</p>
+          <h2>Happy Birthday, <span id="heroName">My Star</span></h2>
+          <p id="heroMessage">
+            Yahan receiver ka naam aane ke baad poora birthday surprise reveal hoga.
+          </p>
+        </article>
+      </section>
+
+      <section class="gallery-section hidden" id="gallerySection">
+        <div class="section-head">
+          <p class="mini-title">Photo Gallery</p>
+          <h2>Special birthday memories</h2>
+        </div>
+        <div id="photoGallery" class="photo-gallery"></div>
+      </section>
+
+      <section class="wish-section hidden" id="wishSection">
+        <div class="section-head">
+          <p class="mini-title">Birthday Wishes</p>
+          <h2>10 pyari birthday lines</h2>
+        </div>
+        <ol id="wishList" class="wish-list"></ol>
+      </section>
+    </main>
+
+    <div id="confettiLayer" class="confetti-layer" aria-hidden="true"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
